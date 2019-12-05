@@ -1,7 +1,7 @@
-// API endpoint --------------------------------------------
+// API
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
-// Get Elements --------------------------------------------
+// Variáveis
 const getElement = document.querySelector.bind(document);
 const searchInput = getElement('.search-input'),
       searchButton = getElement('.search-button'),
@@ -12,9 +12,9 @@ var pokeName, // Nome ou numero passado na caixa de busca
     pokemon, // Responsavel por guardar os dados recebidos da API
     card; // Responsavel por receber o HTML 
 
-// Build Functions --------------------------------------------
+// Funções
 
-// Função responsavel por fazer requisições para a API e inserir as respostas na variavel pokemon
+// Função para requisições do API 
 async function requestPokeInfo(url, name) {
   await fetch(url + name)
     .then(response => response.json())
@@ -24,7 +24,7 @@ async function requestPokeInfo(url, name) {
     .catch(Error => console.log('Pokémon não encontrado' + detail));
 }
 
-// Função responsavel por montar o HTML exibido na pagina
+// Função para criar o card do Pokémon 
 function createCard () {
   card = `
     <div class="pokemon-picture">
@@ -40,10 +40,10 @@ function createCard () {
   return card;
 }
 
-// Função que faz a chamada das principais funções e inicia o app
+// Função que inicia o app
 async function startApp(pokeName) {
   await requestPokeInfo(baseUrl, pokeName);
-    //Exibe uma mensagem caso o pokemon pesquisado não exista
+    // Mensagem de erro
     if(detail.response) {
       container.style.display = 'none';
     }
@@ -53,7 +53,7 @@ async function startApp(pokeName) {
     }
 }
 
-// Add Events --------------------------------------------
+// Buscar com o Enter
 searchButton.addEventListener('click', event => {
   event.preventDefault();
   pokeName = searchInput.value.toLowerCase();
@@ -61,7 +61,7 @@ searchButton.addEventListener('click', event => {
   startApp(pokeName);
   container.classList.add('fade');
 
-  // Reseta o efeito fade removendo a classe fade
+  // Efeito Fade
   setTimeout(() => {
     container.classList.remove('fade');
   }, 3000);
