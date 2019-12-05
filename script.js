@@ -8,9 +8,9 @@ const searchInput = getElement('.search-input'),
       container = getElement('.pokemon'),
       detail = Error
 
-var pokeName, // Nome ou numero passado na caixa de busca
-    pokemon, // Responsavel por guardar os dados recebidos da API
-    card; // Responsavel por receber o HTML 
+var pokeName, // Nome ou numero do Pokémon pesquisado
+    pokemon, // Dados recebidos da API
+    card; // HTML do Pokémon
 
 // Funções
 
